@@ -1,0 +1,23 @@
+version: "3.3"
+services:
+  logstash:
+    image: mikebookhamcap/logstash
+#    volumes:
+#      - /var/log/td-agent:/docker
+    command: -f .\config\docker.conf
+    networks:
+      - tooling
+
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.hostname==IP-0A000F17
+
+    environment:
+         ES_HOSTS: elasticsearch
+
+networks:
+    tooling:
+       external: true

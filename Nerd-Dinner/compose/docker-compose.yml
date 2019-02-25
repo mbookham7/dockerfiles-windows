@@ -1,0 +1,28 @@
+version: '3.3'
+
+services:
+  
+  nerd-dinner-db:
+    image: mikebookhamcap/nerd-dinner-db
+    environment: 
+      - ACCEPT_EULA="Y"
+    networks:
+      - app-net
+
+  nerd-diner-home:
+    image: mikebookhamcap/nerd-dinner-home
+    depends_on:
+      - nerd-dinner-db
+    networks:
+      - app-net
+
+  nerd-dinner-web:
+    image: mikebookhamcap/nerd-dinner-web
+     depends_on:
+      - nerd-dinner-db
+      - nerd-dinner-home
+    networks:
+      - app-net
+
+networks:
+  app-net:

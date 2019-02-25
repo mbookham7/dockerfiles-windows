@@ -1,0 +1,21 @@
+winlogbeat.event_logs:
+  - name: Application
+  - name: Security
+  - name: System
+
+setup.template.settings:
+  index.number_of_shards: 3
+
+output.elasticsearch:
+  hosts:
+    - elasticsearch:9200
+
+logging.to_files: true
+logging.files:
+  path: C:/ProgramData/winlogbeat/Logs
+logging.level: info
+
+setup.kibana:
+  host: "kibana:5601"
+
+setup.dashboards.enabled: true

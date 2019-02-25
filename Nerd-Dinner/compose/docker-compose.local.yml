@@ -1,0 +1,20 @@
+version: '3.3'
+
+services:
+
+  nerd-dinner-db:
+    ports:    
+      - 1433
+
+nerd-dinner-home:
+    ports:
+      - 81
+
+  nerd-dinner-web:
+    ports:
+      - 80
+
+networks:
+  app-net:
+    external:
+      name: nat

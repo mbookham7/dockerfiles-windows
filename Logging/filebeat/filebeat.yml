@@ -1,0 +1,17 @@
+filebeat.prospectors:
+- type: log
+  enabled: true
+  paths:
+    - C:\inetpub\logs\LogFiles\*\*
+  exclude_lines: ['#']
+
+output.elasticsearch:
+  hosts: ["elasticsearch:9200"]
+
+setup.template.settings:
+  index.number_of_shards: 3
+
+setup.kibana:
+  host: "kibana:5601"
+
+setup.dashboards.enabled: true
