@@ -5,7 +5,8 @@ SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPref
 ENV LS_VERSION="6.2.4" `
     LS_HOME="C:\Logstash"
 
-RUN Invoke-WebRequest "https://artifacts.elastic.co/downloads/logstash/logstash-$($env:LS_VERSION).zip" -OutFile 'logstash.zip' -UseBasicParsing; `
+RUN [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12;`
+    Invoke-WebRequest "https://artifacts.elastic.co/downloads/logstash/logstash-$($env:LS_VERSION).zip" -OutFile 'logstash.zip' -UseBasicParsing; `
     Expand-Archive logstash.zip -DestinationPath C:\ ; `
     Move-Item c:/logstash-$($env:LS_VERSION) $env:LS_HOME;
 
